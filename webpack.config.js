@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var cacheObj = {};
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -16,6 +17,7 @@ module.exports = {
         modulesDirectories: ['node_modules', 'src'],
         extensions: ['', '.js']
     },
+    cache: cacheObj,
     module: {
         loaders: [
         {
