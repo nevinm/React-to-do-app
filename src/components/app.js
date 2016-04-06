@@ -1,32 +1,12 @@
 import React from 'react';
 import TodosList from './todos-list';
 import CreateTodo from './create-todo';
+import { connect } from 'react-redux';
+import { addItem } from '../redux/actions';
 
-const todos = [
-  {
-    task: 'make dinner',
-    isCompleted: true,
-  },
-  {
-    task: 'take out dog',
-    isCompleted: false,
-  },
-];
-
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        todos,
-      };
-  }
-
+class App extends React.Component {
   createTask(task) {
-    this.state.todos.push({
-      task,
-      isCompleted: false,
-    });
-    this.setState({ todos: this.state.todos });
+    this.props.dispatch(addItem(task));
   }
 
   toggleTask(task) {
@@ -50,9 +30,9 @@ export default class App extends React.Component {
     return (
         <div>
           <h1>To Do App</h1>
-          <CreateTodo todos={this.state.todos}createTask={this.createTask.bind(this)} />
+          <CreateTodo todos={this.props.todos} createTask={this.createTask.bind(this)} />
           <TodosList
-            todos={this.state.todos}
+            todos={this.props.todos}
             toggleTask={this.toggleTask.bind(this)}
             saveTask={this.saveTask.bind(this)}
             deleteTask={this.deleteTask.bind(this)} />
@@ -60,3 +40,9 @@ export default class App extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(mapStateToProps)(App);
