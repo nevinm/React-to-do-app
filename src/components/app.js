@@ -2,7 +2,7 @@ import React from 'react';
 import TodosList from './todos-list';
 import CreateTodo from './create-todo';
 import { connect } from 'react-redux';
-import { addItem, toggleItem } from '../redux/actions';
+import { addItem, toggleItem, saveItem } from '../redux/actions';
 
 class App extends React.Component {
   createTask(task) {
@@ -10,16 +10,11 @@ class App extends React.Component {
   }
 
   toggleTask(task) {
-    // const foundTodo = _.find(this.props.todos, todo =>todo.task === task);
-    // foundTodo.isCompleted = !foundTodo.isCompleted;
-    // this.setState({ todos: this.props.todos });
     this.props.dispatch(toggleItem(task));
   }
 
   saveTask(oldTask, newTask) {
-    const foundTodo = _.find(this.state.todos, todo =>todo.task === oldTask);
-    foundTodo.task = newTask;
-    this.setState({ todos: this.state.todos });
+    this.props.dispatch(saveItem(oldTask, newTask));
   }
 
   deleteTask(taskToDelete) {
