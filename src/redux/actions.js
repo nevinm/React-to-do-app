@@ -13,3 +13,7 @@ export function saveItem(oldTask, newTask) {
   var item = { oldTask, newTask };
   return { type: types.SAVE_ITEM, item };
 }
+
+export function deleteItem(item) {
+  return { type: types.DELETE_ITEM, item };
+}
