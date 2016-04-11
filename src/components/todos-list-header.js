@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class TodosList extends React.Component {
+export default class TodosListHeader extends React.Component {
   render() {
     return (
         <thead>
