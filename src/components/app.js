@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
         <div>
           <MainHeader />
-          <UserInfo user={this.props.user} createNewUserId={this.props.actions.createNewUserId} />
+          <UserInfo user={this.props.user} actions={this.props.actions} />
           <CreateTodo todos={this.props.todos} createTask={this.props.actions.addItem} />
           <TodosList
             todos={this.props.todos}

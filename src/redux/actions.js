@@ -23,3 +23,22 @@ export function createNewUserId() {
     id: Math.floor(Math.random() * 100)﻿,
   };
 }
+
+export function createNewUserIdOdd() {
+  return (dispatch, getState) => {
+    const { user } = getState();
+    if (user.id % 2 === 0) {
+      return;
+    }
+
+    dispatch(createNewUserId());
+  };
+}
+
+export function createNewUserIdAsync() {
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch(createNewUserId());
+    }, 2500);
+  };
+}
