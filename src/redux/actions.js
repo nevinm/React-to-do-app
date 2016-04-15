@@ -16,3 +16,10 @@ export function saveItem(oldTask, newTask) {
 export function deleteItem(item) {
   return { type: types.DELETE_ITEM, item };
 }
+
+export function createNewUserId() {
+  return {
+    type: 'CREATE_USER_ID',
+    id: Math.floor(Math.random() * 100)﻿,
+  };
+}

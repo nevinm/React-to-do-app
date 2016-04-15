@@ -2,6 +2,7 @@ import React from 'react';
 import TodosList from './todos-list';
 import CreateTodo from './create-todo';
 import MainHeader from './main-header';
+import UserInfo from './user-info';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../redux/actions';
@@ -11,6 +12,7 @@ class App extends React.Component {
     return (
         <div>
           <MainHeader />
+          <UserInfo user={this.props.user} createNewUserId={this.props.actions.createNewUserId} />
           <CreateTodo todos={this.props.todos} createTask={this.props.actions.addItem} />
           <TodosList
             todos={this.props.todos}
@@ -26,6 +28,7 @@ function mapStateToProps(state) {
   //Map only required data/state to that particular component
   return {
     todos: state.todos,
+    user: state.user,
   };
 }
 

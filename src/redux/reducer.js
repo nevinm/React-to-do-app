@@ -38,6 +38,16 @@ export default function reducer(state, action) {
 
       return deletedItem;
 
+    case 'CREATE_USER_ID':
+      var newUser = Object.assign({}, state, {
+        user:{
+          username: state.user.username,
+          id: action.id,
+        },
+      });
+
+      return newUser;
+
     default:
       return state;
   }

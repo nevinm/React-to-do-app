@@ -17,11 +17,10 @@ const InitialState = {
       id: 1,
     },
   ],
-  user:[{
-    name: 'Nevin',
+  user:{
+    username: 'Nevin',
     id: 123,
   },
-  ],
 };
 var store = configureStore(InitialState);
 
