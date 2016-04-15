@@ -18,7 +18,7 @@ export default function reducer(state, action) {
       return toggledItem;
 
     case 'SAVE_ITEM':
-      var savedItem =  Object.assign({}, state, {
+      var savedItem = Object.assign({}, state, {
         todos: state.todos.map((todo) => todo.task === action.item.oldTask ?
           Object.assign({}, todo, { task: action.item.newTask }) : todo),
       });

@@ -3,42 +3,38 @@ import TodosList from './todos-list';
 import CreateTodo from './create-todo';
 import MainHeader from './main-header';
 import { connect } from 'react-redux';
-import { addItem, toggleItem, saveItem, deleteItem } from '../redux/actions';
+import { bindActionCreators } from 'redux';
+import * as actions from '../redux/actions';
 
 class App extends React.Component {
-  createTask(task) {
-    this.props.dispatch(addItem(task));
-  }
-
-  toggleTask(task) {
-    this.props.dispatch(toggleItem(task));
-  }
-
-  saveTask(oldTask, newTask) {
-    this.props.dispatch(saveItem(oldTask, newTask));
-  }
-
-  deleteTask(taskToDelete) {
-    this.props.dispatch(deleteItem(taskToDelete));
-  }
-
   render() {
     return (
         <div>
           <MainHeader />
-          <CreateTodo todos={this.props.todos} createTask={this.createTask.bind(this)} />
+          <CreateTodo todos={this.props.todos} createTask={this.props.actions.addItem} />
           <TodosList
             todos={this.props.todos}
-            toggleTask={this.toggleTask.bind(this)}
-            saveTask={this.saveTask.bind(this)}
-            deleteTask={this.deleteTask.bind(this)} />
+            toggleTask={this.props.actions.toggleItem}
+            saveTask={this.props.actions.saveItem}
+            deleteTask={this.props.actions.deleteItem} />
         </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return state;
+  //Map only required data/state to that particular component
+  return {
+    todos: state.todos,
+  };
 }
 
-export default connect(mapStateToProps)(App);
+//Dont have to pass down dispatch each time or import actions in each component.
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
+
+//Redux will automatically pass in state and dispatch as params to the 2 functions^^
+export default connect(mapStateToProps, mapDispatchToProps)(App);

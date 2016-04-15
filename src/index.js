@@ -15,8 +15,14 @@ const InitialState = {
       isCompleted: false,
     },
   ],
+  user:[{
+    name: 'Nevin',
+    id: 123,
+  },
+  ],
 };
 var store = configureStore(InitialState);
 
+//TO:DO Read context
 render(<Provider store={store}><App/></Provider>,
    document.getElementById('app'));

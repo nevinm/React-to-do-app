@@ -10,8 +10,7 @@ export function toggleItem(item) {
 }
 
 export function saveItem(oldTask, newTask) {
-  var item = { oldTask, newTask };
-  return { type: types.SAVE_ITEM, item };
+  return { type: types.SAVE_ITEM, item: { oldTask, newTask }, };
 }
 
 export function deleteItem(item) {
