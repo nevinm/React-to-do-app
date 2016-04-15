@@ -3,14 +3,14 @@ function getId(todos) {
   return updatedId;
 }
 
-export default function reducer(todos, action) {
+export default function toDoReducer(todos= [], action) {
   switch (action.type){
     case 'ADD_ITEM':
       return [{
           task: action.item,
           isCompleted: false,
           id: getId(todos),
-        }, todos,
+        }, ...todos,
       ];
 
     case 'TOGGLE_ITEM':
@@ -30,17 +30,7 @@ export default function reducer(todos, action) {
 
       return deletedItem;
 
-    case 'CREATE_USER_ID':
-      var newUser = Object.assign({}, state, {
-        user:{
-          username: state.user.username,
-          id: action.id,
-        },
-      });
-
-      return newUser;
-
     default:
-      return state;
+      return todos;
   }
 }

@@ -1,7 +1,7 @@
 import { createStore }  from 'redux';
-import reducer  from './reducer';
+import rootReducer  from './reducers';
 
-export default function configureStore(todos = []) {
-  return createStore(reducer, todos,
+export default function configureStore(InitialState = { todos: [], user: {} }) {
+  return createStore(rootReducer, InitialState,
      window.devToolsExtension ? window.devToolsExtension() : undefined);
 }
