@@ -1,3 +1,8 @@
+function getId(state) {
+  var updatedId = state.todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
+  return updatedId;
+}
+
 export default function reducer(state, action) {
   switch (action.type){
     case 'ADD_ITEM':
@@ -5,6 +10,7 @@ export default function reducer(state, action) {
         todos:[{
           task: action.item,
           isCompleted: false,
+          id: getId(state),
         }, ...state.todos,
         ],
       };

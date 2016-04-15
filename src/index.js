@@ -9,10 +9,12 @@ const InitialState = {
   todos: [{
       task: 'make dinner',
       isCompleted: true,
+      id: 0,
     },
     {
       task: 'take out dog',
       isCompleted: false,
+      id: 1,
     },
   ],
   user:[{
